@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+
+<% include partials/header.ejs %>
+
+<body>
+
+<h1><%= title %></h1>
+
+<p>Check our users list</p>
+
+<ul>
+    <% users.forEach(function(user){ %>
+    <li><%= user.firstName + " " + user.lastName %></li>
+    <% }) %>
+</ul>
+
+
+<h2>Add customer</h2>
+
+<% if(typeof errors !== "undefined") { %>
+<h4 style="color:red;">Errors were found!</h4>
+<ul>
+    <% errors.forEach((error) => { %>
+    <li style="color: red;"><%= error.msg %></li>
+    <% }) %>
+</ul>
+<% } %>
+
+<form action="/users/add" method="post">
+
+    <label for="first_name">First Name</label>
+    <input type="text" name="first_name">
+    <br>
+    <label for="last_name">Last name</label>
+    <input type="text" name="last_name">
+    <br>
+    <label for="email">Email</label>
+    <input type="email" name="email">
+    <br>
+    <br>
+    <input type="submit" value="submit">
+
+
+</form>
+
+<% include partials/footer %>
